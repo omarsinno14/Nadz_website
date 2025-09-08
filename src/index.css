@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+
+/* === Finance background (subtle neon grids + radial glows) === */
+.bg-finance {
+  background:
+    radial-gradient(60vw 60vw at 15% 10%, rgba(34,211,238,0.20), transparent 60%),
+    radial-gradient(60vw 60vw at 85% 20%, rgba(52,211,153,0.18), transparent 60%),
+    radial-gradient(50vw 50vw at 50% 90%, rgba(245,158,11,0.10), transparent 60%),
+    /* grid lines */
+    linear-gradient(transparent 0, rgba(255,255,255,0.03) 1px),
+    linear-gradient(90deg, transparent 0, rgba(255,255,255,0.03) 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 24px 24px, 24px 24px;
+  background-position: center, center, center, center, center;
+  background-color: #0b1220;
+}
+
+/* animated gradient edge highlight for section dividers */
+@keyframes sweep {
+  0% { transform: translateX(-50%) scaleX(0.6); opacity: .35; }
+  50% { transform: translateX(-50%) scaleX(1); opacity: .7; }
+  100% { transform: translateX(-50%) scaleX(0.6); opacity: .35; }
+}
+.section-glow::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -1px;
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(34,211,238,1), transparent);
+  filter: drop-shadow(0 0 6px rgba(34,211,238,.6));
+  animation: sweep 5s linear infinite;
+}
+
+/* glass card utility */
+.card-dark {
+  @apply bg-white/5 border border-white/10 backdrop-blur rounded-2xl;
+}
